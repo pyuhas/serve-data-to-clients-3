@@ -14,7 +14,7 @@ function filterById(data, id){
   return data.filter(student => student.ID == id)
 }
 
-app.get('/', (req, res) => res.json(data))
+app.get('/', (req, res) => res.json({data: data}))
 
 app.get('/:id', (req, res) => {
   let result = filterById(data, req.params.id)
@@ -23,9 +23,9 @@ app.get('/:id', (req, res) => {
             error: {
                 message: "No record found!"
             }
-        });
+        })
     } else {
-        res.json({data: result});
+        res.json({data: result})
       }
 })
 
