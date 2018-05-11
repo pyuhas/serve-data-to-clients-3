@@ -14,19 +14,21 @@ function filterById(data, id){
   return data.filter(student => student.ID == id)
 }
 
-app.get('/', (req, res) => res.json({data: data}))
+app.get('/', (req, res) => res.json({data}))
 
 app.get('/:id', (req, res) => {
   let result = filterById(data, req.params.id)
-  if (!result[0]){
-        res.status(404).json({
-            error: {
-                message: "No record found!"
-            }
-        })
-    } else {
-        res.json({data: result})
+  if (!result[0]) {
+    res.status(404).json({
+      error: {
+        message: "No record found!"
       }
+    })
+  } else {
+    res.json({
+    data: result
+    })
+  }
 })
 
 app.listen(PORT, () => console.log('Listening!'))
